@@ -1,4 +1,5 @@
 using Cake.AddinDiscoverer.Utilities;
+using System.Collections.Generic;
 
 namespace Cake.AddinDiscoverer.Models
 {
@@ -88,6 +89,13 @@ namespace Cake.AddinDiscoverer.Models
 		public bool CakeRecipeIsLatest { get; set; }
 
 		public bool AtLeastOneDecoratedMethod { get; set; }
+
+		/// <summary>
+		/// Gets or sets a value indicating whether XML documentation is available in the NuGet package.
+		/// </summary>
+		public bool XmlDocumentationAvailable { get; set; }
+
+		public List<string> XmlDocumentationAnalysisNotes { get; set; } = new List<string>();
 
 		/// <summary>
 		/// Get the version of Cake targeted by this addin.

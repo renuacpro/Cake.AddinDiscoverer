@@ -213,7 +213,7 @@ namespace Cake.AddinDiscoverer.Steps
 									Path.GetFileNameWithoutExtension(f).EqualsIgnoreCase(addin.Name) &&
 									Path.GetDirectoryName(f).EqualsIgnoreCase(assemblyFolder));
 
-							addin.XmlDocumentationAvailable = !string.IsNullOrEmpty(xmlDocumentation);
+							addin.XmlDocumentationFilePath = xmlDocumentation;
 
 							//--------------------------------------------------
 							// Find the DLL references

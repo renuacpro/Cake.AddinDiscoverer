@@ -74,6 +74,7 @@ namespace Cake.AddinDiscoverer.Steps
 					addin.AnalysisResult.ObsoleteLicenseUrlRemoved = !string.IsNullOrEmpty(addin.License);
 					addin.AnalysisResult.RepositoryInfoProvided = addin.RepositoryUrl != null;
 					addin.AnalysisResult.PackageCoOwnedByCakeContrib = addin.NuGetPackageOwners.Contains("cake-contrib", StringComparer.OrdinalIgnoreCase);
+					addin.AnalysisResult.XmlDocumentationAvailable = !string.IsNullOrEmpty(addin.XmlDocumentationFilePath);
 
 					return addin;
 				})
