@@ -1,5 +1,6 @@
 using Cake.AddinDiscoverer.Utilities;
 using Cake.Incubator.StringExtensions;
+using NuGet.Packaging.Core;
 using Octokit;
 using System;
 using System.Collections.Generic;
@@ -343,6 +344,29 @@ namespace Cake.AddinDiscoverer
 			if (uri == null) return false;
 
 			return uri.Host.Contains("bitbucket.org", StringComparison.OrdinalIgnoreCase);
+		}
+
+		public static MemoryStream LoadFile(this IPackageCoreReader package, string filePath)
+		{
+			try
+			{
+				var cleanPath = filePath.Replace('/', '\\');
+				if (cleanPath.IndexOf('%') > -1)
+				{
+					cleanPath = Uri.UnescapeDataString(cleanPath);
+				}
+
+				using var fileStream = package.GetStream(cleanPath);
+				var seekablePdbStream = new MemoryStream();
+				fileStream.CopyTo(seekablePdbStream);
+				seekablePdbStream.Position = 0;
+				return seekablePdbStream;
+			}
+			catch (FileLoadException e)
+			{
+				// Note: intentionally discarding the original exception because I want to ensure the following message is displayed in the 'Exceptions' report
+				throw new FileLoadException($"An error occured while loading {Path.GetFileName(filePath)} from the Nuget package. {e.Message}");
+			}
 		}
 
 		/// <summary>

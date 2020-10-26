@@ -1,4 +1,5 @@
 using Cake.Incubator.StringExtensions;
+using NuGet.Packaging;
 using Octokit;
 using System;
 using System.Collections.Generic;
@@ -84,6 +85,10 @@ namespace Cake.AddinDiscoverer.Models
 		public string[] AliasCategories { get; set; }
 
 		public DateTimeOffset PublishedOn { get; set; }
+
+		public PackageArchiveReader NuGetPackage { get; set; }
+
+		public PackageArchiveReader SymbolsPackage { get; set; }
 
 		public IDictionary<string, Stream> RepoContent { get; set; }
 
