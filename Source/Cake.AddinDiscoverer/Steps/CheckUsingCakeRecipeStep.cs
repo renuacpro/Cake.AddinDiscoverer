@@ -72,11 +72,6 @@ namespace Cake.AddinDiscoverer.Steps
 								// I know of at least one case where the URL in the NuGet metadata points to a repo that has been deleted.
 								// Therefore it's safe to ignore this error.
 							}
-							finally
-							{
-								// This is to ensure we don't issue requests too quickly and therefore trigger Github's abuse detection
-								await Misc.RandomGithubDelayAsync().ConfigureAwait(false);
-							}
 						}
 
 						return addin;
