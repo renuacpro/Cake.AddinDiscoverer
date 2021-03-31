@@ -178,9 +178,6 @@ namespace Cake.AddinDiscoverer.Steps
 
 						var pullRequest = await Misc.CommitToNewBranchAndSubmitPullRequestAsync(context, fork, issue?.Number, newBranchName, issueTitle, commits).ConfigureAwait(false);
 						if (pullRequest != null) context.PullRequestsCreatedByCurrentUser.Add(pullRequest);
-
-						// This delay is important to avoid triggering GitHub's abuse protection
-						await Misc.RandomGithubDelayAsync().ConfigureAwait(false);
 					}
 				}
 			}
@@ -222,9 +219,6 @@ namespace Cake.AddinDiscoverer.Steps
 
 						var pullRequest = await Misc.CommitToNewBranchAndSubmitPullRequestAsync(context, fork, issue?.Number, newBranchName, issueTitle, commits).ConfigureAwait(false);
 						if (pullRequest != null) context.PullRequestsCreatedByCurrentUser.Add(pullRequest);
-
-						// This is minimize the likelihood of triggering Github's abuse detection
-						await Misc.RandomGithubDelayAsync().ConfigureAwait(false);
 					}
 				}
 			}
@@ -271,9 +265,6 @@ namespace Cake.AddinDiscoverer.Steps
 
 						var pullRequest = await Misc.CommitToNewBranchAndSubmitPullRequestAsync(context, fork, issue?.Number, newBranchName, issueTitle, commits).ConfigureAwait(false);
 						if (pullRequest != null) context.PullRequestsCreatedByCurrentUser.Add(pullRequest);
-
-						// This is minimize the likelihood of triggering Github's abuse detection
-						await Misc.RandomGithubDelayAsync().ConfigureAwait(false);
 					}
 				}
 			}

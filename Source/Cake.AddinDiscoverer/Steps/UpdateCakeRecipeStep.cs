@@ -160,7 +160,6 @@ namespace Cake.AddinDiscoverer.Steps
 				};
 
 				await Misc.CommitToNewBranchAndSubmitPullRequestAsync(context, fork, issue?.Number, newBranchName, commitMessageShort, commits).ConfigureAwait(false);
-				await Misc.RandomGithubDelayAsync().ConfigureAwait(false);
 			}
 		}
 
